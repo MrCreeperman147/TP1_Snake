@@ -1,3 +1,10 @@
+/*====================================
+AUTEUR : OGBEIWI Bright
+PROJET : TP1_Snake
+NOM DU FICHIER : point.cpp
+DATE : 08/02/2023
+DESCRIPTION : Permet l'affichage d'un point d'une couleur donnée sur des coordonnées données dans une console
+====================================*/
 #include <assert.h>
 #include <Windows.h>
 #include <fstream>

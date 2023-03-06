@@ -1,3 +1,10 @@
+/*====================================
+AUTEUR : OGBEIWI Bright
+PROJET : TP1_Snake
+NOM DU FICHIER : rectangle.h
+DATE : 06/03/2023
+DESCRIPTION : Permet l'affichage d'un rectangle composé de points
+====================================*/
 #pragma once
 
 #include <iostream>
