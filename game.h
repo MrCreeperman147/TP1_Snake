@@ -7,10 +7,6 @@ DESCRIPTION : Permet la gestion d'une session de jeu
 ====================================*/
 #pragma once
 
-#include "snake.h"
-#include "apple.h"
-#include "rectangle.h"
-
 class game
 {
 private:
@@ -18,7 +14,7 @@ private:
 	bool _gameOver;
 
 	int _dir;
-	int _hp 
+	int _hp;
 	int _score;
 
 	snake _snake;
@@ -31,12 +27,26 @@ private:
 	enum direction{STOP,LEFT,RIGHT,UP,DOWN,NONE};
 public:
 	//Constructors/Destructor
-
-	//Accessors
+	game();
+	~game();
 
 	//Methods
+	void initalize();
 
-	//Friends :)
+	point randPos() const;
+	void createApple();
 
-	//Overload
+	void startMenu();
+	void parametersMenu();
+	void play();
+
+	void inputKey();
+	bool canMove(const point& point) const;
+	int getScore() const;
+
+	void drawScreen();
+
+	void printScore(std::ostream& output) const;
+	void printHP(std::ostream& output) const;
+	void printEnd(std::ostream& output) const;
 };

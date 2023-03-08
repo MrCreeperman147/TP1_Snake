@@ -6,3 +6,6 @@ DATE : 06/03/2023
 DESCRIPTION : fichier qui contient des fonctions indépendentes de toute classe
 ====================================*/
 #pragma once
+
+void clearBuffer();
+void setTextColor(int color);

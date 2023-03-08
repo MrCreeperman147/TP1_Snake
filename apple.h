@@ -10,16 +10,20 @@ class apple
 {
 private:
 	//Attributes
-
+	point _apple;
 
 public:
 	//Constructors/Destructor
+	apple();
+	apple(int x, int y);
 
 	//Accessors
+	void setPos(int x, int y);
+	const point& getPos() const;
 
 	//Methods
+	void draw(std::ostream& output) const;
 
-	//Friends :)
-
-	//Overload
 };
+//Overload
+std::ostream operator<<(std::ostream& output, const apple& apple);

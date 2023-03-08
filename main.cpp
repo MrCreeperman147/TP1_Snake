@@ -8,6 +8,8 @@ DESCRIPTION : Point d'entrée du programme
 #include <iostream>
 #include <time.h>
 
+#include "functions.h"
+
 using namespace std;
 
 void main()
@@ -16,8 +18,5 @@ void main()
 	locale::global(locale{ "" });
 	srand(time(0));
 
-	//variables
-
-	//menu
-
+	
 }

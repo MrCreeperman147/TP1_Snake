@@ -153,12 +153,12 @@ point point::operator=(point& pointACopier)
 
 bool point::operator==(const point& pointAComparer)
 {
-	return _x == pointAComparer._x && _y == pointAComparer._y && _color == pointAComparer._color;
+	return _x == pointAComparer._x && _y == pointAComparer._y;
 }
 
 bool point::operator!=(const point& pointAComparer)
 {
-	return _x != pointAComparer._x || _y != pointAComparer._y || _color != pointAComparer._color;
+	return _x != pointAComparer._x || _y != pointAComparer._y;
 }
 
 point point::operator+=(const point& p)
