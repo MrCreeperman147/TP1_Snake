@@ -49,4 +49,4 @@ public:
 	const point& operator[](int id) const;
 };
 
-std::ostream& operator<<(ostream& output, const snake& snek);
+std::ostream& operator<<(std::ostream& output, const snake& snek);

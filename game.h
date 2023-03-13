@@ -7,6 +7,10 @@ DESCRIPTION : Permet la gestion d'une session de jeu
 ====================================*/
 #pragma once
 
+#include "rectangle.h"
+#include "snake.h"
+#include "apple.h"
+
 class game
 {
 private:
@@ -20,9 +24,9 @@ private:
 	snake _snake;
 	apple _apple;
 
+	int _w;
+	int _h;
 	rectangle _board;
-	int _w = 40;
-	int _h = 40;
 
 	enum direction{STOP,LEFT,RIGHT,UP,DOWN,NONE};
 public:

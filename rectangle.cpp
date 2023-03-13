@@ -151,8 +151,6 @@ rectangle rectangle::operator=(rectangle& r)
 }
 #pragma endregion
 
-
-
 //Operator Overload
 #pragma region Operator Overload
 
@@ -188,11 +186,5 @@ bool rectangle::operator>(rectangle& r)
 	return this->perimeter() > r.perimeter();
 }
 #pragma endregion
-
-
-
-//Functions
-
-
 
 

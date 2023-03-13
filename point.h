@@ -44,7 +44,7 @@ public:
 	void print(std::ostream& flux) const;
 
 	//Operator Overload
-	bool operator==(const point& pointAComparer);
+	bool operator==(const point& pointAComparer) const;
 	bool operator!=(const point& pointAComparer);
 
 	point operator=(point& pointACopier);

@@ -151,7 +151,7 @@ point point::operator=(point& pointACopier)
 	return *this;
 }
 
-bool point::operator==(const point& pointAComparer)
+bool point::operator==(const point& pointAComparer) const
 {
 	return _x == pointAComparer._x && _y == pointAComparer._y;
 }

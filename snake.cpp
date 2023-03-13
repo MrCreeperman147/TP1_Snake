@@ -22,6 +22,8 @@ using namespace std;
 /// </summary>
 snake::snake()
 {
+	_size = 6;
+	_speed = 100;
 	this->initalize();
 }
 
@@ -32,7 +34,9 @@ snake::snake()
 /// <param name="y">Coordonnée Y</param>
 snake::snake(int x, int y)
 {
-	this->initalize(x, y)
+	_size = 6;
+	_speed = 100;
+	this->initalize(x, y);
 }
 
 /// <summary>
@@ -89,7 +93,6 @@ void snake::setSpeed(int speed)
 
 #pragma endregion
 
-
 #pragma region Methods
 
 /// <summary>
@@ -99,11 +102,10 @@ void snake::setSpeed(int speed)
 /// <param name="y">Coordonnée Y</param>
 void snake::initalize(int x, int y)
 {
-	_snakeArray[0].setPosition(x, y);
-	_size = 6;
-	_speed = 100;
-
-	this->setSnakeColor(1);
+	for (int i = 0; i < _size; i++)
+	{
+		_snakeArray[i].setPosition(x, y);
+	}
 }
 
 /// <summary>
@@ -128,7 +130,7 @@ const point& snake::getIdPos(int id) const
 /// <summary>
 /// Permet de changer la couleur du snake
 /// </summary>
-/// <param name="color">couleur de 0 à 15</param>
+/// <param name="color">couleur de 1 à 15</param>
 void snake::setSnakeColor(int color)
 {
 	for (int i = 0; i < 800; i++)
@@ -145,7 +147,29 @@ void snake::setSnakeColor(int color)
 /// <returns>La prochaine position de la tête du snake</returns>
 point snake::newPos(int dir) const
 {
-	
+
+	point newHead(getHeadPos());	//copie de la tête
+
+	switch (dir)
+	{
+	case 1: //left
+		newHead.setX(newHead.getX() - 1);
+		break;
+
+	case 2:	//right	
+		newHead.setX(newHead.getX() + 1);
+		break;
+
+	case 3:	//up
+		newHead.setY(newHead.getY() - 1);
+		break;
+
+	case 4:	//down
+		newHead.setY(newHead.getY() + 1);
+		break;
+	}
+
+	return newHead;
 }
 
 /// <summary>
@@ -158,19 +182,67 @@ bool snake::ifCollision(const point& pos) const
 	bool retour = false;
 	int i = 0;
 	
-	while (i != 6 && retour != true)
+	while (i < _size && retour != true)
 	{
 		if (pos == _snakeArray[i])
 		{
 			retour = true;
 		}
-		i++
+		i++;
 	}
 	
 	return retour;
 }
 
+/// <summary>
+/// Change les coordoonée de chaques points du snake selon la direction donnée en parametre
+/// </summary>
+/// <param name="dir">La direction du mouvement</param>
+void snake::move(int dir)
+{
+	//Chaque point sauf la tête prend la position du point precedant
+	for(int i = _size; i > 0; i--)
+	{
+		_snakeArray[i] = _snakeArray[i - 1];
+	}
+	//Ensuite on donne la nouvelle position de la tête en utilisant snake.newPos()
+	point newPosi = newPos(dir);
+	_snakeArray[0] = newPosi;
+	_snakeArray[_size].setColor(0);
+	_snakeArray[_size].draw(cout);
 
+	
+}
+
+/// <summary>
+/// Similaire à snake.move() mais agrandi le snake.
+/// L'action de manger la pomme est gérée par la classe Game
+/// </summary>
+/// <param name="dir">La direction du snake</param>
+void snake::eat(int dir)
+{
+	_size++;
+	//Chaque point sauf la tête prend la position du point precedant
+	for (int i = _size - 1; i > 0; i--)
+	{
+		_snakeArray[i] = _snakeArray[i - 1];
+	}
+	//Ensuite on donne la nouvelle position de la tête en utilisant snake.newPos()
+	point newPosi = newPos(dir);
+	_snakeArray[0] = newPosi;
+}
+
+/// <summary>
+/// Dessine le snake
+/// </summary>
+/// <param name="output">Le flux de sortie</param>
+void snake::draw(std::ostream& output) const
+{
+	for (int i = 0; i < _size; i++)
+	{
+		_snakeArray[i].draw(output);
+	}
+}
 
 #pragma endregion
 
@@ -184,4 +256,18 @@ const point& snake::operator[](int id) const
 	return this->getIdPos(id);
 }
 
+/// <summary>
+/// Execute la methode snake.draw()
+/// </summary>
+/// <param name="output">Le flux de sortie</param>
+/// <param name="snek">L'objet à sortir</param>
+/// <returns></returns>
+ostream& operator<<(ostream& output, const snake& snek)
+{
+	snek.draw(output);
+	return output;
+}
+
 #pragma endregion
+
+

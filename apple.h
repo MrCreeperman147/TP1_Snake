@@ -6,6 +6,7 @@ DATE : 06/03/2023
 DESCRIPTION : Permet l'affichage et la gestion des pommes
 ====================================*/
 #pragma once
+
 class apple
 {
 private:
@@ -23,7 +24,8 @@ public:
 
 	//Methods
 	void draw(std::ostream& output) const;
+	void setColor(int color);
 
 };
 //Overload
-std::ostream operator<<(std::ostream& output, const apple& apple);
+std::ostream& operator<<(std::ostream& output, const apple& apple);
